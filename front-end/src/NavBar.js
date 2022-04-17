@@ -32,7 +32,7 @@ function NavBar() {
                     <a className="nav-link" href="#" style={{color:"rgba(185, 42, 50)"}}>Log In</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Register</a>
+                    <button type="button" class="btn btn-register">Register</button>
                 </li>
             </ul>
         </div>
