@@ -29,7 +29,7 @@ function NavBar() {
         <div className="auth ">
             <ul className="navbar-nav ">
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Log In</a>
+                    <a className="nav-link" href="#" style={{color:"rgba(185, 42, 50)"}}>Log In</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#">Register</a>

@@ -10,3 +10,6 @@
 .navbar-services {
     margin: auto;
 }
+.navbar-light .navbar-nav .nav-link:hover {
+    color: rgba(185, 42, 50);
+}
