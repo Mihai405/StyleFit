@@ -1,12 +1,7 @@
-import NavBar from "./Layout/NavBar";
-import { Fragment } from "react";
+import Layout from "./Layout/Layout";
 
 function App() {
-    return (
-        <Fragment>
-            <NavBar />
-        </Fragment>
-    );
+    return <Layout />;
 }
 
 export default App;
