@@ -12,7 +12,7 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
-
+import { StyledButton } from "../../styles/Styles";
 const pages = ["Home", "Services", "Contact"];
 
 const NavBar = () => {
@@ -30,16 +30,6 @@ const NavBar = () => {
         <AppBar position="sticky" color="transparent">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Avatar
-                        alt="StyleFit logo"
-                        src={logo}
-                        sx={{
-                            display: { xs: "none", md: "flex" },
-                            mr: 1,
-                            width: 100,
-                            height: 100,
-                        }}
-                    />
                     <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                         <IconButton
                             size="large"
@@ -87,6 +77,16 @@ const NavBar = () => {
                         src={logo}
                         sx={{ display: { xs: "flex", md: "none" } }}
                     />
+                    <Avatar
+                        alt="StyleFit logo"
+                        src={logo}
+                        sx={{
+                            display: { xs: "none", md: "flex" },
+                            mr: 1,
+                            width: 100,
+                            height: 100,
+                        }}
+                    />
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -111,6 +111,20 @@ const NavBar = () => {
                                 </NavLink>
                             </Button>
                         ))}
+                    </Box>
+                    <Box
+                        justifyContent={"flex-end"}
+                        sx={{ display: { xs: "none", md: "flex" } }}
+                    >
+                        <StyledButton>Login</StyledButton>
+                        <StyledButton
+                            variant="contained"
+                            sx={{
+                                boxShadow: "25",
+                            }}
+                        >
+                            Register
+                        </StyledButton>
                     </Box>
                 </Toolbar>
             </Container>
