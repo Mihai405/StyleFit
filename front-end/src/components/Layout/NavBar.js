@@ -13,9 +13,12 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import { StyledButton } from "../../styles/Styles";
+import { useTheme } from "@mui/system";
 const pages = ["Home", "Services", "Contact"];
 
 const NavBar = () => {
+    const theme = useTheme();
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -62,7 +65,7 @@ const NavBar = () => {
                                             to={`/${page}`}
                                             style={{
                                                 textDecoration: "none",
-                                                color: "#525252",
+                                                color: theme.palette.secondary.main,
                                             }}
                                         >
                                             {page}
@@ -104,7 +107,7 @@ const NavBar = () => {
                                     to={`/${page}`}
                                     style={{
                                         textDecoration: "none",
-                                        color: "#525252",
+                                        color: theme.palette.secondary.main,
                                     }}
                                 >
                                     {page}
