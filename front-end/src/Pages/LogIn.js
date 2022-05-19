@@ -93,6 +93,19 @@ export default function LogIn() {
                 Forgot Password
               </Link>
             </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <Button
+                variant="contained"
+                size="large"
+                sx={{ borderRadius: "100px", px: 7, py: 2 }}
+              >
+                Sign In
+              </Button>
+            </Grid>
           </Grid>
         </DialogContent>
       </Dialog>
