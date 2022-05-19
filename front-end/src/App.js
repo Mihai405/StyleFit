@@ -1,5 +1,5 @@
 import Layout from "./components/Layout/Layout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>
     </BrowserRouter>

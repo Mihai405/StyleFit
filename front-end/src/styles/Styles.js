@@ -16,9 +16,6 @@ export const theme = createTheme({
     facebook: {
       main: "#2196f3",
     },
-    typography: {
-      fontFamily: ["Oswald", "sans-serif"].join(","),
-    },
   },
   shadows: {
     0: "none",

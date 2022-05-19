@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { StyledButton } from "../../styles/Styles";
 import { useTheme } from "@mui/system";
 import LogIn from "../../Pages/LogIn";
@@ -35,8 +35,7 @@ const NavBar = () => {
     <AppBar
       position="static"
       color="transparent"
-      boxShadow={0}
-      sx={{ paddingX: { md: 20 } }}
+      sx={{ paddingX: { md: 20 }, boxShadow: "0" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -87,6 +86,8 @@ const NavBar = () => {
           <Avatar
             alt="StyleFit logo"
             src={logo}
+            component={Link}
+            to="/"
             sx={{
               display: { xs: "none", md: "flex" },
               mr: 1,
