@@ -1,10 +1,15 @@
 import Layout from "./components/Layout/Layout";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPage from "./Pages/MainPage";
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout></Layout>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }

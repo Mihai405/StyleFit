@@ -32,15 +32,11 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky" color="transparent">
+    <AppBar position="static" color="transparent">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
@@ -119,10 +115,7 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-          <Box
-            justifyContent={"flex-end"}
-            sx={{ display: { xs: "none", md: "flex" } }}
-          >
+          <Box justifyContent={"flex-end"} sx={{ display: { xs: "none", md: "flex" } }}>
             <LogIn />
             <StyledButton
               variant="contained"
