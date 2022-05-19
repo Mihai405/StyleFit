@@ -9,6 +9,7 @@ import { StyledButton, theme } from "../styles/Styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
+import Link from "@mui/material/Link";
 
 const CustomInputField = styled(TextField)({
   backgroundColor: theme.palette.primary.main,
@@ -77,6 +78,20 @@ export default function LogIn() {
               sx={{ display: "flex", justifyContent: "center", m: 1 }}
             >
               <CustomInputField sx={{ px: 2 }}></CustomInputField>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <Link
+                xs={6}
+                underline="hover"
+                component="button"
+                variant="subtitle2"
+              >
+                Forgot Password
+              </Link>
             </Grid>
           </Grid>
         </DialogContent>
