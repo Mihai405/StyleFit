@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import { StyledButton } from "../../styles/Styles";
 import { useTheme } from "@mui/system";
-import LogIn from "../LogIn/LogIn";
+import LogIn from "../../Pages/LogIn";
 const pages = ["Home", "Services", "Contact"];
 
 const NavBar = () => {
