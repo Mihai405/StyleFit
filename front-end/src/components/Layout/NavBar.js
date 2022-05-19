@@ -32,7 +32,12 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static" color="transparent">
+    <AppBar
+      position="static"
+      color="transparent"
+      boxShadow={0}
+      sx={{ paddingX: { md: 20 } }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
