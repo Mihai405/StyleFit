@@ -202,6 +202,38 @@ export default function LogIn() {
                 </Button>
               </Grid>
             </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mt: 2,
+              }}
+            >
+              <Typography
+                variant="body2"
+                xs={6}
+                sx={{
+                  color: theme.palette.primary.main,
+                  display: "flex",
+                  justifyContent: "center",
+                  mr: 1,
+                }}
+              >
+                Don't have an account?
+              </Typography>
+              <Link
+                xs={6}
+                underline="hover"
+                component="button"
+                variant="subtitle2"
+              >
+                Sign up here
+              </Link>
+            </Grid>
           </Grid>
         </DialogContent>
       </Dialog>
