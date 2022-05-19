@@ -11,6 +11,9 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import Link from "@mui/material/Link";
 import { Divider } from "@mui/material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import AppleIcon from "@mui/icons-material/Apple";
 
 const CustomInputField = styled(TextField)({
   backgroundColor: theme.palette.primary.main,
@@ -150,6 +153,53 @@ export default function LogIn() {
                     ml: 2,
                   }}
                 />
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Button color="primary">
+                  <GoogleIcon fontSize="large" />
+                </Button>
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Button color="facebook">
+                  <FacebookIcon fontSize="large" />
+                </Button>
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <Button color="secondary">
+                  <AppleIcon fontSize="large" />
+                </Button>
               </Grid>
             </Grid>
           </Grid>
