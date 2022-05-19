@@ -10,6 +10,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import Link from "@mui/material/Link";
+import { Divider } from "@mui/material";
 
 const CustomInputField = styled(TextField)({
   backgroundColor: theme.palette.primary.main,
@@ -105,6 +106,51 @@ export default function LogIn() {
               >
                 Sign In
               </Button>
+            </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mt: 5,
+                mb: 2,
+                alignItems: "center",
+              }}
+            >
+              <Grid item xs={3}>
+                <Divider
+                  sx={{
+                    backgroundColor: theme.palette.primary.main,
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    mr: 2,
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    color: theme.palette.primary.main,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  Or sign in with
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Divider
+                  sx={{
+                    backgroundColor: theme.palette.primary.main,
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    ml: 2,
+                  }}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </DialogContent>
