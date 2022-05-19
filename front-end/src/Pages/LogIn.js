@@ -8,6 +8,20 @@ import DialogContentText from "@mui/material/DialogContentText";
 import { StyledButton, theme } from "../styles/Styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/system";
+
+const CustomInputField = styled(TextField)({
+  backgroundColor: theme.palette.primary.main,
+  borderRadius: "100px",
+  "& input": {
+    color: "white",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "none",
+    },
+  },
+});
 
 export default function LogIn() {
   const [open, setOpen] = React.useState(false);
@@ -49,6 +63,20 @@ export default function LogIn() {
               >
                 Log in to your account
               </Typography>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "center", m: 1 }}
+            >
+              <CustomInputField sx={{ px: 2 }}></CustomInputField>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "center", m: 1 }}
+            >
+              <CustomInputField sx={{ px: 2 }}></CustomInputField>
             </Grid>
           </Grid>
         </DialogContent>
