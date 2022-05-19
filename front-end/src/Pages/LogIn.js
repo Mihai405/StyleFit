@@ -2,9 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import { StyledButton, theme } from "../styles/Styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -14,6 +12,8 @@ import { Divider } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
+import { WavyHeader } from "../components/LogIn/wavyStyles/WavyHeader";
+import { WavyFooter } from "../components/LogIn/wavyStyles/WavyFooter";
 
 const CustomInputField = styled(TextField)({
   backgroundColor: theme.palette.primary.main,
@@ -44,6 +44,7 @@ export default function LogIn() {
       <StyledButton onClick={handleClickOpen}>Log In</StyledButton>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
+          <WavyHeader />
           <Grid container sx={{ mt: 15, mb: 12 }}>
             <Grid
               item
@@ -235,6 +236,7 @@ export default function LogIn() {
               </Link>
             </Grid>
           </Grid>
+          <WavyFooter />
         </DialogContent>
       </Dialog>
     </div>
