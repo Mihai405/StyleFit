@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { StyledButton } from "../../styles/Styles";
 import { useTheme } from "@mui/system";
 import LogIn from "../../Pages/LogIn";
@@ -32,15 +32,15 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky" color="transparent">
+    <AppBar
+      position="static"
+      color="transparent"
+      sx={{ paddingX: { md: 20 }, boxShadow: "0" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
@@ -86,6 +86,8 @@ const NavBar = () => {
           <Avatar
             alt="StyleFit logo"
             src={logo}
+            component={Link}
+            to="/"
             sx={{
               display: { xs: "none", md: "flex" },
               mr: 1,
@@ -119,10 +121,7 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-          <Box
-            justifyContent={"flex-end"}
-            sx={{ display: { xs: "none", md: "flex" } }}
-          >
+          <Box justifyContent={"flex-end"} sx={{ display: { xs: "none", md: "flex" } }}>
             <LogIn />
             <StyledButton
               variant="contained"
