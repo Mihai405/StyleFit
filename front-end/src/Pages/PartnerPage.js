@@ -3,6 +3,7 @@ import PartnerPageWallpaper from "./../assets/PartnerPage/PartnerPageWallpaper.j
 import StarIcon from "@mui/icons-material/Star";
 
 import PriceCard from "../components/PartnerPage/PriceCard";
+import Appointment from "../components/PartnerPage/Appointment";
 
 const dummy_data = {
   id: 1,
@@ -72,6 +73,9 @@ const PartnerPage = () => {
             <PriceCard {...element} />
           </Grid>
         ))}
+      </Grid>
+      <Grid item xs={12}>
+        <Appointment />
       </Grid>
     </Grid>
   );
