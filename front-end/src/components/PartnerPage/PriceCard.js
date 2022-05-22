@@ -8,9 +8,10 @@ const PriceCard = ({ price, name }) => {
         flexDirection="column"
         alignItems="center"
         sx={{
+          width: "50px",
           border: "1px solid black",
           borderRadius: "100%",
-          padding: "10px",
+          padding: "5px",
           marginRight: "10px",
         }}
       >
