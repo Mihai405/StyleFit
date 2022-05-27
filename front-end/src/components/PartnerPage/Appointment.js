@@ -12,6 +12,8 @@ const minDate = new Date("2022-01-01T00:00:00.000");
 const maxDate = new Date("2024-01-01T00:00:00.000");
 
 const Appointment = ({ name }) => {
+  const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+
   const [value, setValue] = useState(new Date());
 
   return (
@@ -46,18 +48,28 @@ const Appointment = ({ name }) => {
           justifyContent="center"
           alignContent="center"
         >
-          <Typography variant="h5" fontWeight={350}>
-            You have an appointment with
-          </Typography>
-          <Typography variant="h5" fontWeight={700}>
-            {name}
-          </Typography>
-          <Typography variant="h6" fontWeight={400}>
-            Friday 27 November at 10:15
-          </Typography>
-          <Button variant="contained" size="large" sx={{ borderRadius: "0px" }}>
-            CONFIRM
-          </Button>
+          <Grid container item justifyContent="center" spacing={1}>
+            <Grid item>
+              <Typography variant="h5" fontWeight={350}>
+                You have an appointment with
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="h5" fontWeight={700}>
+                {name}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="h6" fontWeight={400}>
+                {value.toLocaleDateString("en-US", options)}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" size="large" sx={{ borderRadius: "0px" }}>
+                CONFIRM
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
       </Grid>
     </Grid>
