@@ -117,7 +117,11 @@ const Appointment = ({ name, prices }) => {
             </Select>
           </FormControl>
           <FormControl sx={{ m: 1, textAlignLast: "center" }}>
-            <InputLabel shrink htmlFor="select-appointment-slots">
+            <InputLabel
+              shrink
+              htmlFor="select-appointment-slots"
+              sx={{ color: "#b92a32" }}
+            >
               Appointment Slots
             </InputLabel>
             <Select
@@ -128,7 +132,13 @@ const Appointment = ({ name, prices }) => {
               label="Appointment Slots"
               inputProps={{
                 id: "select-appointment-slots",
-                sx: { height: "400px" },
+                sx: { height: "400px", color: "#b92a32" },
+              }}
+              InputLabelProps={{
+                sx: { color: "#b92a32" },
+              }}
+              InputProps={{
+                sx: { color: "#b92a32" },
               }}
             >
               {hours.map((hour, index) => (
@@ -161,7 +171,7 @@ const Appointment = ({ name, prices }) => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h6" fontWeight={400}>
+              <Typography variant="h6" fontWeight={380}>
                 {dateValue.toLocaleDateString("en-US", options)}
               </Typography>
             </Grid>
