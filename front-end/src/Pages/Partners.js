@@ -1,4 +1,13 @@
-import { Grid, Container } from "@mui/material";
+import { useState } from "react";
+import {
+  Grid,
+  Container,
+  Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
 import PartnerCard from "../components/Partners/PartnerCard";
 
@@ -13,8 +22,33 @@ let dummy_data = [
 ];
 
 const Partners = () => {
+  const [filter, setFilter] = useState("");
+
+  const handleChange = (event) => {
+    setFilter(event.target.value);
+  };
+
   return (
     <Container>
+      <Box sx={{ minWidth: 120 }} marginTop={4}>
+        <FormControl fullWidth>
+          <InputLabel id="filter-services-select-label" sx={{ color: "#b92a32" }}>
+            Filter Services
+          </InputLabel>
+          <Select
+            labelId="filter-services-select-label"
+            id="filter-services-select"
+            value={filter}
+            label="Filter Services"
+            inputProps={{
+              sx: { color: "#b92a32", textAlign: "center" },
+            }}
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
       <Grid container item xs={12} spacing={3} paddingY={3} justifyContent="center">
         {dummy_data.map((element, index) => (
           <Grid item key={index}>
