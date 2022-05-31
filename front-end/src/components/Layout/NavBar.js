@@ -16,7 +16,8 @@ import { NavLink, Link } from "react-router-dom";
 import { StyledButton } from "../../styles/Styles";
 import { useTheme } from "@mui/system";
 import LogIn from "../../Pages/LogIn";
-const pages = ["Home", "Services", "Contact", "Partner"];
+
+const pages = ["Home", "Services", "Contact", "Partners", "Partner"];
 
 const NavBar = () => {
   const theme = useTheme();
