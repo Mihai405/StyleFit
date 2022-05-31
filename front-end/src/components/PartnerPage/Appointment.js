@@ -5,16 +5,62 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import { Grid, Box, Typography, Button } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Typography,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
 const minDate = new Date("2022-01-01T00:00:00.000");
 
 const maxDate = new Date("2024-01-01T00:00:00.000");
 
-const Appointment = ({ name }) => {
-  const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+const Appointment = ({ name, prices }) => {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
 
-  const [value, setValue] = useState(new Date());
+  const [dateValue, setDateValue] = useState(new Date());
+
+  const [appointmentType, setAppointmentType] = useState("");
+
+  const handleChange = (event) => {
+    setAppointmentType(event.target.value);
+  };
+
+  const hours = [
+    { name: "09:00 AM", value: 9 },
+    { name: "10:00 AM", value: 10 },
+    { name: "11:00 AM", value: 11 },
+    { name: "12:00 AM", value: 12 },
+    { name: "13:00 AM", value: 13 },
+    { name: "14:00 AM", value: 14 },
+    { name: "15:00 AM", value: 15 },
+  ];
+
+  const [appointmentSlots, setAppointmentSlots] = useState([]);
+  const handleChangeMultiple = (event) => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0, l = options.length; i < l; i += 1) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    setAppointmentSlots(value);
+    dateValue.setHours(value[0], 0);
+    setDateValue(dateValue);
+  };
 
   return (
     <Grid container item justifyContent="space-between">
@@ -26,10 +72,10 @@ const Appointment = ({ name }) => {
               minDate={minDate}
               maxDate={maxDate}
               openTo="day"
-              value={value}
+              value={dateValue}
               shouldDisableDate={isWeekend}
               onChange={(newValue) => {
-                setValue(newValue);
+                setDateValue(newValue);
               }}
               renderInput={(params) => <TextField {...params} />}
             />
@@ -37,7 +83,62 @@ const Appointment = ({ name }) => {
         </Box>
       </Grid>
       <Grid item md={4}>
-        <Box border={1} borderRadius={5} padding={1} width="320px" height="482px"></Box>
+        <Box
+          border={1}
+          borderRadius={5}
+          padding={1}
+          width="320px"
+          height="482px"
+          display="flex"
+          flexDirection="column"
+          // justifyContent="center"
+          alignContent="space-around"
+        >
+          <FormControl fullWidth>
+            <InputLabel
+              id="appointment-type-label"
+              sx={{ color: "#b92a32", fontWeight: "500" }}
+            >
+              Appointment Type
+            </InputLabel>
+            <Select
+              labelId="appointment-type-select-label"
+              id="appointment-type-select"
+              value={appointmentType}
+              label="Appointment Type"
+              inputProps={{ sx: { color: "#b92a32", fontWeight: "500" } }}
+              onChange={handleChange}
+            >
+              {prices.map((price, index) => (
+                <MenuItem value={price.name} key={index}>
+                  {`${price.name} (${price.price} RON) `}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl sx={{ m: 1, textAlignLast: "center" }}>
+            <InputLabel shrink htmlFor="select-appointment-slots">
+              Appointment Slots
+            </InputLabel>
+            <Select
+              multiple
+              native
+              value={appointmentSlots}
+              onChange={handleChangeMultiple}
+              label="Appointment Slots"
+              inputProps={{
+                id: "select-appointment-slots",
+                sx: { height: "400px" },
+              }}
+            >
+              {hours.map((hour, index) => (
+                <option key={index} value={hour.value}>
+                  {hour.name}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
       </Grid>
       <Grid item md={4}>
         <Box
@@ -61,7 +162,7 @@ const Appointment = ({ name }) => {
             </Grid>
             <Grid item>
               <Typography variant="h6" fontWeight={400}>
-                {value.toLocaleDateString("en-US", options)}
+                {dateValue.toLocaleDateString("en-US", options)}
               </Typography>
             </Grid>
             <Grid item>

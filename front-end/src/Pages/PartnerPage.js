@@ -105,7 +105,7 @@ const PartnerPage = () => {
           ))}
         </Grid>
         <Grid item xs={12}>
-          <Appointment name={dummy_data.name} />
+          <Appointment name={dummy_data.name} prices={dummy_data.prices} />
         </Grid>
       </Grid>
     </Container>
