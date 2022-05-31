@@ -8,4 +8,7 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
+const clientsRouter = require("./routes/clients");
+app.use("/clients", clientsRouter);
+
 app.listen(port, () => console.log("Server started on port " + port));
