@@ -106,7 +106,6 @@ const Appointment = ({ name, prices }) => {
               id="appointment-type-select"
               value={appointmentType}
               label="Appointment Type"
-              inputProps={{ sx: { color: "#b92a32", fontWeight: "500" } }}
               onChange={handleChange}
             >
               {prices.map((price, index) => (
@@ -133,12 +132,6 @@ const Appointment = ({ name, prices }) => {
               inputProps={{
                 id: "select-appointment-slots",
                 sx: { height: "400px", color: "#b92a32" },
-              }}
-              InputLabelProps={{
-                sx: { color: "#b92a32" },
-              }}
-              InputProps={{
-                sx: { color: "#b92a32" },
               }}
             >
               {hours.map((hour, index) => (
