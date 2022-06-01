@@ -46,63 +46,31 @@ export default function LogIn() {
         <DialogContent>
           <WavyHeader />
           <Grid container sx={{ mt: 15, mb: 12 }}>
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "center" }}
-            >
-              <Typography
-                variant="h3"
-                sx={{ color: theme.palette.primary.main }}
-              >
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+              <Typography variant="h3" sx={{ color: theme.palette.primary.main }}>
                 Welcome Back
               </Typography>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "center", m: 1 }}
-            >
-              <Typography
-                variant="subtitle1"
-                sx={{ color: theme.palette.primary.main }}
-              >
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", m: 1 }}>
+              <Typography variant="subtitle1" sx={{ color: theme.palette.primary.main }}>
                 Log in to your account
               </Typography>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "center", m: 1 }}
-            >
-              <CustomInputField sx={{ px: 2 }}></CustomInputField>
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", m: 1 }}>
+              <CustomInputField
+                sx={{ px: 2 }}
+                placeholder="Email Address"
+              ></CustomInputField>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "center", m: 1 }}
-            >
-              <CustomInputField sx={{ px: 2 }}></CustomInputField>
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", m: 1 }}>
+              <CustomInputField sx={{ px: 2 }} placeholder="Password"></CustomInputField>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "flex-end" }}
-            >
-              <Link
-                xs={6}
-                underline="hover"
-                component="button"
-                variant="subtitle2"
-              >
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+              <Link xs={6} underline="hover" component="button" variant="subtitle2">
                 Forgot Password
               </Link>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "center" }}
-            >
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
               <Button
                 variant="contained"
                 size="large"
@@ -226,12 +194,7 @@ export default function LogIn() {
               >
                 Don't have an account?
               </Typography>
-              <Link
-                xs={6}
-                underline="hover"
-                component="button"
-                variant="subtitle2"
-              >
+              <Link xs={6} underline="hover" component="button" variant="subtitle2">
                 Sign up here
               </Link>
             </Grid>

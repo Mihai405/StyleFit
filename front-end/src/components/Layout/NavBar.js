@@ -13,9 +13,9 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { NavLink, Link } from "react-router-dom";
-import { StyledButton } from "../../styles/Styles";
 import { useTheme } from "@mui/system";
 import LogIn from "../../Pages/LogIn";
+import Register from "../../Pages/Register";
 
 const pages = ["Home", "Services", "Contact", "Partners", "Partner"];
 
@@ -124,14 +124,15 @@ const NavBar = () => {
           </Box>
           <Box justifyContent={"flex-end"} sx={{ display: { xs: "none", md: "flex" } }}>
             <LogIn />
-            <StyledButton
+            {/* <StyledButton
               variant="contained"
               sx={{
                 boxShadow: "25",
               }}
             >
               Register
-            </StyledButton>
+            </StyledButton> */}
+            <Register />
           </Box>
         </Toolbar>
       </Container>

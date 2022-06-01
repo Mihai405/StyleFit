@@ -106,6 +106,9 @@ const Appointment = ({ name, prices }) => {
               id="appointment-type-select"
               value={appointmentType}
               label="Appointment Type"
+              inputProps={{
+                sx: { color: "#b92a32", fontWeight: "500", textAlign: "center" },
+              }}
               onChange={handleChange}
             >
               {prices.map((price, index) => (
