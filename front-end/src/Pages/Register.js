@@ -51,7 +51,7 @@ export default function Register() {
 
   const authCtx = useContext(AuthContext);
 
-  const jobTypes = ["HairStyling", "Massage Therapist"];
+  const jobTypes = ["HairStylist", "Nails", "Spa", "Skin", "Waxing", "Massage"];
 
   const [open, setOpen] = useState(false);
 
