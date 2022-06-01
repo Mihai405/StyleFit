@@ -1,8 +1,21 @@
 import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import PartnerPageWallpaper from "./../../assets/PartnerPage/PartnerPageWallpaper.jpg";
 import StarIcon from "@mui/icons-material/Star";
+import SpaIcon from "@mui/icons-material/Spa";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-const ClientAppointmentCard = ({ name, job, rating, reviews }) => {
+const ClientAppointmentCard = ({ name, job, rating, reviews, service, date }) => {
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+
+  const dateNewFormat = new Date(date).toLocaleDateString("en-US", options);
+
   return (
     <Card
       variant="outlined"
@@ -46,6 +59,27 @@ const ClientAppointmentCard = ({ name, job, rating, reviews }) => {
           </Typography>
           <Typography variant="body2" component="span">
             ({reviews} reviews)
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>
+          <SpaIcon sx={{ fill: "#ffe234" }} />
+          <Typography variant="body1" component="span" marginRight={1} fontWeight={450}>
+            {service.name}
+          </Typography>
+          <Typography variant="body2" component="span">
+            ({service.price} RON)
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>
+          <CalendarMonthIcon sx={{ fill: "#ffe234" }} />
+          <Typography
+            variant="body1"
+            component="span"
+            marginRight={1}
+            fontWeight={450}
+            textAlign="center"
+          >
+            {dateNewFormat}
           </Typography>
         </Box>
       </CardContent>
