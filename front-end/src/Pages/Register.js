@@ -1,5 +1,15 @@
 import * as React from "react";
-import { Button, FormControl, InputLabel, Select, MenuItem, Paper } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Paper,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -7,10 +17,6 @@ import { StyledButton, theme } from "../styles/Styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
-import { Divider } from "@mui/material";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import AppleIcon from "@mui/icons-material/Apple";
 import { useState } from "react";
 import { WavyHeader } from "../components/LogIn/wavyStyles/WavyHeader";
 import { WavyFooter } from "../components/LogIn/wavyStyles/WavyFooter";
@@ -47,6 +53,12 @@ export default function Register() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const [role, setRole] = useState("CLIENT");
+
+  const handleRoleChange = (e) => {
+    setRole(e.target.value);
   };
 
   const [jobType, setJobType] = useState("");
@@ -92,32 +104,62 @@ export default function Register() {
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", m: 1 }}>
               <CustomInputField sx={{ px: 2 }} placeholder="Password"></CustomInputField>
             </Grid>
-            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", m: 1 }}>
-              <FormControl sx={{ width: "270px" }}>
-                <InputLabel
-                  id="job-type-label"
-                  sx={{ color: "#b92a32", fontWeight: "500" }}
-                >
-                  Job Type
-                </InputLabel>
-                <Select
-                  labelId="job-type-select-label"
-                  id="job-type-select"
-                  value={jobType}
-                  label="Job Type"
-                  inputProps={{
-                    sx: { color: "#b92a32", fontWeight: "500", textAlign: "center" },
+            <Grid container item spacing={2} marginTop={1} justifyContent="center">
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                value={role}
+                onChange={handleRoleChange}
+              >
+                <FormControlLabel
+                  value="CLIENT"
+                  control={<Radio sx={{ color: "#b92a32" }} />}
+                  label="Client"
+                  sx={{
+                    color: "#b92a32",
+                    mx: 4,
                   }}
-                  onChange={handleChange}
-                >
-                  {jobTypes.map((job, index) => (
-                    <MenuItem value={job} key={index}>
-                      {job}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+                />
+                <FormControlLabel
+                  value="PARTNER"
+                  control={<Radio sx={{ color: "#b92a32" }} />}
+                  label="Partner"
+                  sx={{
+                    color: "#b92a32",
+                    mx: 4,
+                  }}
+                />
+              </RadioGroup>
             </Grid>
+            {role === "PARTNER" && (
+              <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", m: 1 }}>
+                <FormControl sx={{ width: "270px" }}>
+                  <InputLabel
+                    id="job-type-label"
+                    sx={{ color: "#b92a32", fontWeight: "500" }}
+                  >
+                    Job Type
+                  </InputLabel>
+                  <Select
+                    labelId="job-type-select-label"
+                    id="job-type-select"
+                    value={jobType}
+                    label="Job Type"
+                    inputProps={{
+                      sx: { color: "#b92a32", fontWeight: "500", textAlign: "center" },
+                    }}
+                    onChange={handleChange}
+                  >
+                    {jobTypes.map((job, index) => (
+                      <MenuItem value={job} key={index}>
+                        {job}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+            )}
             <Grid container item spacing={2} marginBottom={1} justifyContent="center">
               <Grid item xs={3.5} height={1} minWidth={300} justifyContent="center">
                 <Item sx={{ backgroundColor: "#0000", boxShadow: "none" }}>
@@ -136,98 +178,6 @@ export default function Register() {
               >
                 Register
               </Button>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                mt: 3,
-                mb: 2,
-                alignItems: "center",
-              }}
-            >
-              <Grid item xs={3}>
-                <Divider
-                  sx={{
-                    backgroundColor: theme.palette.primary.main,
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    mr: 2,
-                  }}
-                />
-              </Grid>
-              <Grid item>
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    color: theme.palette.primary.main,
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  Or sign in with
-                </Typography>
-              </Grid>
-              <Grid item xs={3}>
-                <Divider
-                  sx={{
-                    backgroundColor: theme.palette.primary.main,
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    ml: 2,
-                  }}
-                />
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Grid
-                item
-                xs={4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Button color="primary">
-                  <GoogleIcon fontSize="large" />
-                </Button>
-              </Grid>
-              <Grid
-                item
-                xs={4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Button color="facebook">
-                  <FacebookIcon fontSize="large" />
-                </Button>
-              </Grid>
-              <Grid
-                item
-                xs={4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                }}
-              >
-                <Button color="secondary">
-                  <AppleIcon fontSize="large" />
-                </Button>
-              </Grid>
             </Grid>
           </Grid>
           <WavyFooter />

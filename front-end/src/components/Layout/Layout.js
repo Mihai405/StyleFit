@@ -5,7 +5,7 @@ import NavBar from "./NavBar";
 import NavBarPartner from "./NavBarPartner";
 
 const Layout = (props) => {
-  const role = "PARTNER";
+  const role = "";
 
   return (
     <Fragment>
