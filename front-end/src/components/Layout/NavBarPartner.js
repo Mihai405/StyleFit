@@ -15,10 +15,13 @@ import Button from "@mui/material/Button";
 import { NavLink, Link } from "react-router-dom";
 import { useTheme } from "@mui/system";
 import { StyledButton } from "./../../styles/Styles";
+import AuthContext from "../../store/auth-context";
 
 const pages = ["Home", "Profile", "Appointments"];
 
 const NavBarPartner = () => {
+  const authCtx = React.useContext(AuthContext);
+
   const theme = useTheme();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -127,6 +130,7 @@ const NavBarPartner = () => {
               sx={{
                 boxShadow: "25",
               }}
+              onClick={authCtx.logout}
             >
               Logout
             </StyledButton>

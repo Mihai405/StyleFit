@@ -181,6 +181,7 @@ const NavBar = () => {
                 sx={{
                   boxShadow: "25",
                 }}
+                onClick={authCtx.logout}
               >
                 Logout
               </StyledButton>
