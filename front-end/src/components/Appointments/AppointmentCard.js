@@ -4,7 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import SpaIcon from "@mui/icons-material/Spa";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-const ClientAppointmentCard = ({ name, job, rating, reviews, service, date }) => {
+const AppointmentCard = ({ name, job, rating, reviews, service, date, currentUser }) => {
   const options = {
     weekday: "short",
     year: "numeric",
@@ -47,22 +47,27 @@ const ClientAppointmentCard = ({ name, job, rating, reviews, service, date }) =>
         }}
       >
         <Typography variant="h5" component="div" textAlign="center" fontWeight={500}>
-          {name}
+          {currentUser === "PARTNER" ? name : name}
         </Typography>
-        <Typography variant="h6" component="div" textAlign="center" fontWeight={400}>
-          {job}
-        </Typography>
-        <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>
-          <StarIcon sx={{ fill: "#ffe234" }} />
-          <Typography variant="body1" component="span" marginRight={1} fontWeight={450}>
-            {rating}
+        {currentUser === "PARTNER" && (
+          <Typography variant="h6" component="div" textAlign="center" fontWeight={400}>
+            {job}
           </Typography>
-          <Typography variant="body2" component="span">
-            ({reviews} reviews)
-          </Typography>
-        </Box>
+        )}
+        {currentUser === "PARTNER" && (
+          <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>
+            <StarIcon sx={{ fill: "#ffe234" }} />
+            <Typography variant="body1" component="span" marginRight={1} fontWeight={450}>
+              {rating}
+            </Typography>
+            <Typography variant="body2" component="span">
+              ({reviews} reviews)
+            </Typography>
+          </Box>
+        )}
+
         <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>
-          <SpaIcon sx={{ fill: "#ffe234" }} />
+          <SpaIcon sx={{ fill: "#ffe234", marginRight: "6px" }} />
           <Typography variant="body1" component="span" marginRight={1} fontWeight={450}>
             {service.name}
           </Typography>
@@ -87,4 +92,4 @@ const ClientAppointmentCard = ({ name, job, rating, reviews, service, date }) =>
   );
 };
 
-export default ClientAppointmentCard;
+export default AppointmentCard;

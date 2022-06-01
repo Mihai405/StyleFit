@@ -1,5 +1,5 @@
 import { Grid, Container } from "@mui/material";
-import ClientAppointmentCard from "../components/Appointments/ClientAppointmentCard";
+import AppointmentCard from "../components/Appointments/AppointmentCard";
 
 const dummy_data_partner = [
   {
@@ -53,6 +53,8 @@ const dummy_data_partner = [
 ];
 
 const Appointments = () => {
+  const role = "CLIENT";
+
   return (
     <Container>
       {dummy_data_partner.length > 0 && (
@@ -65,7 +67,7 @@ const Appointments = () => {
         >
           {dummy_data_partner.map((appointment, index) => (
             <Grid item key={index} md={4}>
-              <ClientAppointmentCard {...appointment} />
+              <AppointmentCard {...appointment} currentUser={role} />
             </Grid>
           ))}
         </Grid>
