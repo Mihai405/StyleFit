@@ -116,7 +116,11 @@ export default function Register() {
         }
       })
       .then((data) => {
-        authCtx.login(data.token, role, data.client.name);
+        if (role === "CLIENT") {
+          authCtx.login(data.token, role, data.client.name);
+        } else {
+          authCtx.login(data.token, role, data.partner.name);
+        }
         handleClose();
       })
       .catch((err) => {
