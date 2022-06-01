@@ -17,10 +17,13 @@ import { useTheme } from "@mui/system";
 import LogIn from "../../Pages/LogIn";
 import Register from "../../Pages/Register";
 import { StyledButton } from "./../../styles/Styles";
+import AuthContext from "../../store/auth-context";
 
 const pages = ["Home", "Services", "Partner"];
 
 const NavBar = () => {
+  const authCtx = React.useContext(AuthContext);
+
   const theme = useTheme();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -32,8 +35,6 @@ const NavBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const isLoggedIn = false;
 
   return (
     <AppBar
@@ -153,26 +154,28 @@ const NavBar = () => {
                 Partners
               </NavLink>
             </Button>
-            <Button
-              key="Appointments"
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, display: "block" }}
-            >
-              <NavLink
-                to="/appointments"
-                style={{
-                  textDecoration: "none",
-                  color: theme.palette.secondary.main,
-                }}
+            {authCtx.isLoggedIn && (
+              <Button
+                key="Appointments"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, display: "block" }}
               >
-                My Appointments
-              </NavLink>
-            </Button>
+                <NavLink
+                  to="/appointments"
+                  style={{
+                    textDecoration: "none",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  My Appointments
+                </NavLink>
+              </Button>
+            )}
           </Box>
           <Box justifyContent={"flex-end"} sx={{ display: { xs: "none", md: "flex" } }}>
-            {!isLoggedIn && <LogIn />}
-            {!isLoggedIn && <Register />}
-            {isLoggedIn && (
+            {!authCtx.isLoggedIn && <LogIn />}
+            {!authCtx.isLoggedIn && <Register />}
+            {authCtx.isLoggedIn && (
               <StyledButton
                 variant="contained"
                 sx={{

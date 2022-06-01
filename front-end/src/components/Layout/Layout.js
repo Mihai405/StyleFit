@@ -1,16 +1,17 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import AuthContext from "../../store/auth-context";
 import Footer from "./Footer";
 
 import NavBar from "./NavBar";
 import NavBarPartner from "./NavBarPartner";
 
 const Layout = (props) => {
-  const role = "CLIENT";
+  const authCtx = useContext(AuthContext);
 
   return (
     <Fragment>
-      {role !== "PARTNER" && <NavBar />}
-      {role === "PARTNER" && <NavBarPartner />}
+      {authCtx.role !== "PARTNER" && <NavBar />}
+      {authCtx.role === "PARTNER" && <NavBarPartner />}
 
       <main>{props.children}</main>
       <Footer />
