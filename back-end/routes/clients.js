@@ -1,9 +1,9 @@
 const express = require("express");
+const auth = require("../middleware/auth");
 const uniqueEmail = require("../middleware/uniqueEmail");
 const uploadImage = require("../middleware/uploadImage");
 const router = express.Router();
 const Client = require("../models/client");
-const Partner = require("../models/partner");
 
 router.get("/", async (req, res) => {
   try {
@@ -36,6 +36,28 @@ router.patch("/login", async (req, res) => {
     );
     const token = await client.generateAuthToken();
     res.json({ client, token });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.patch("/logout", auth, async (req, res) => {
+  try {
+    res.user.tokens = res.user.tokens.filter(
+      (token) => token.token !== res.token
+    );
+    await res.user.save();
+    res.json({ message: "Log Out" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.patch("/logoutAll", auth, async (req, res) => {
+  try {
+    res.user.tokens = [];
+    await res.user.save();
+    res.json({ message: "Log Out from all devices" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
