@@ -25,6 +25,7 @@ const partnerSchema = new mongoose.Schema({
   },
   image: {
     type: Buffer,
+    required: true,
   },
   tokens: [
     {
@@ -35,6 +36,8 @@ const partnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
+  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "Services" }],
 });
 
 partnerSchema.methods.generateAuthToken = async function () {
