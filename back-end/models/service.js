@@ -9,6 +9,7 @@ const serviceSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  partner: [{ type: mongoose.Schema.Types.ObjectId, ref: "Partner" }],
 });
 
 const Service = mongoose.model("Service", serviceSchema);

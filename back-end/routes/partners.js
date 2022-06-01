@@ -20,8 +20,8 @@ router.get("/services", auth, async (req, res) => {
     if (res.role !== "partner") {
       throw new Error("Invalid role");
     }
-    await res.user.populate("services");
-    res.json(res.user);
+    const services = await Service.find({ partner: res.user._id });
+    res.json(services);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -48,11 +48,10 @@ router.post("/services", auth, async (req, res) => {
     }
     const service = await new Service({
       ...req.body,
+      partner: res.user._id,
     });
     await service.save();
-    res.user.services.push(service);
-    await res.user.save();
-    res.status(201).json(res.user);
+    res.status(201).json(service);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
