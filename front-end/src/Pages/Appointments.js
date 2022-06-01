@@ -1,5 +1,7 @@
-import { Grid, Container } from "@mui/material";
+import { Grid, Container, Stack, CircularProgress } from "@mui/material";
 import AppointmentCard from "../components/Appointments/AppointmentCard";
+import { useState, useCallback, useEffect, useContext } from "react";
+import AuthContext from "../store/auth-context";
 
 const dummy_data_partner = [
   {
@@ -14,46 +16,66 @@ const dummy_data_partner = [
     },
     date: new Date(),
   },
-  {
-    id: 1,
-    name: "Emma Watson",
-    job: "HairStylist",
-    rating: 5.0,
-    reviews: 1200,
-    service: {
-      name: "Haircut",
-      price: 100,
-    },
-    date: new Date(),
-  },
-  {
-    id: 1,
-    name: "Emma Stone",
-    job: "HairStylist",
-    rating: 4.9,
-    reviews: 500,
-    service: {
-      name: "Haircut",
-      price: 100,
-    },
-    date: new Date(),
-  },
-  {
-    id: 1,
-    name: "Robbie Margot",
-    job: "HairStylist",
-    rating: 5.0,
-    reviews: 900,
-    service: {
-      name: "Haircut",
-      price: 100,
-    },
-    date: new Date(),
-  },
 ];
 
 const Appointments = () => {
-  const role = "CLIENT";
+  const authCtx = useContext(AuthContext);
+
+  const [appointments, setAppointments] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchAppointmentsHandler = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      let url;
+      if (authCtx.role === "PARTNER") {
+        url = "http://127.0.0.1:4000/partners/appointments";
+      } else {
+        url = "http://127.0.0.1:4000/clients/appointments";
+      }
+      const response = await fetch(url, {
+        headers: {
+          Authorization: authCtx.token,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+
+      const loadedAppointments = [];
+
+      for (const key in data) {
+        loadedAppointments.push({
+          _id: data[key]._id,
+          client: data[key].client,
+          partner: data[key].partner,
+          services: data[key].service,
+          date: data[key].date,
+        });
+      }
+
+      setAppointments(loadedAppointments);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+    setIsLoading(false);
+  }, [authCtx.role, authCtx.token]);
+
+  useEffect(() => {
+    fetchAppointmentsHandler();
+  }, [fetchAppointmentsHandler]);
+
+  console.log(appointments);
+
+  if (isLoading) {
+    return (
+      <Stack alignItems="center">
+        <CircularProgress />
+      </Stack>
+    );
+  }
 
   return (
     <Container>
@@ -65,9 +87,9 @@ const Appointments = () => {
           alignItems="center"
           rowSpacing={5}
         >
-          {dummy_data_partner.map((appointment, index) => (
+          {appointments.map((appointment, index) => (
             <Grid item key={index} md={4}>
-              <AppointmentCard {...appointment} currentUser={role} />
+              <AppointmentCard {...appointment} currentUser={authCtx.role} />
             </Grid>
           ))}
         </Grid>

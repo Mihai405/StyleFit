@@ -17,7 +17,7 @@ import { useTheme } from "@mui/system";
 import { StyledButton } from "./../../styles/Styles";
 import AuthContext from "../../store/auth-context";
 
-const pages = ["Home", "Profile", "Appointments"];
+const pages = ["Home", "Profile", "appointments"];
 
 const NavBarPartner = () => {
   const authCtx = React.useContext(AuthContext);

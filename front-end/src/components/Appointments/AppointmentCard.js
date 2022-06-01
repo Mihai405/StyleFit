@@ -4,7 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import SpaIcon from "@mui/icons-material/Spa";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-const AppointmentCard = ({ name, job, rating, reviews, service, date, currentUser }) => {
+const AppointmentCard = ({ client, partner, services, date, currentUser }) => {
   const options = {
     weekday: "short",
     year: "numeric",
@@ -47,21 +47,21 @@ const AppointmentCard = ({ name, job, rating, reviews, service, date, currentUse
         }}
       >
         <Typography variant="h5" component="div" textAlign="center" fontWeight={500}>
-          {currentUser === "PARTNER" ? name : name}
+          {currentUser === "PARTNER" ? partner.name : client.name}
         </Typography>
         {currentUser === "PARTNER" && (
           <Typography variant="h6" component="div" textAlign="center" fontWeight={400}>
-            {job}
+            {partner.job}
           </Typography>
         )}
         {currentUser === "PARTNER" && (
           <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>
             <StarIcon sx={{ fill: "#ffe234" }} />
             <Typography variant="body1" component="span" marginRight={1} fontWeight={450}>
-              {rating}
+              {partner.rating}
             </Typography>
             <Typography variant="body2" component="span">
-              ({reviews} reviews)
+              ({partner.reviews} reviews)
             </Typography>
           </Box>
         )}
@@ -69,10 +69,10 @@ const AppointmentCard = ({ name, job, rating, reviews, service, date, currentUse
         <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>
           <SpaIcon sx={{ fill: "#ffe234", marginRight: "6px" }} />
           <Typography variant="body1" component="span" marginRight={1} fontWeight={450}>
-            {service.name}
+            {services.name}
           </Typography>
           <Typography variant="body2" component="span">
-            ({service.price} RON)
+            ({services.price} RON)
           </Typography>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" marginTop={1}>

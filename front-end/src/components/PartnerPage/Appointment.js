@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useCallback, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "./../../store/auth-context";
 import * as React from "react";
 import isWeekend from "date-fns/isWeekend";
 import TextField from "@mui/material/TextField";
@@ -21,6 +23,8 @@ const minDate = new Date("2022-01-01T00:00:00.000");
 const maxDate = new Date("2024-01-01T00:00:00.000");
 
 const Appointment = ({ name, prices }) => {
+  const navigate = useNavigate();
+
   const options = {
     weekday: "long",
     year: "numeric",
@@ -61,6 +65,33 @@ const Appointment = ({ name, prices }) => {
     dateValue.setHours(value[0], 0);
     setDateValue(dateValue);
   };
+
+  const authCtx = useContext(AuthContext);
+
+  const confirmHandler = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:4000/services/${appointmentType}/appointments`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            date: dateValue,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${authCtx.token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+      navigate("/appointments", { replace: true });
+      return data;
+    } catch {}
+  }, [authCtx.token, appointmentType, dateValue, navigate]);
 
   return (
     <Grid container item justifyContent="space-between">
@@ -112,7 +143,7 @@ const Appointment = ({ name, prices }) => {
               onChange={handleChange}
             >
               {prices?.map((price, index) => (
-                <MenuItem value={price.name} key={index}>
+                <MenuItem value={price._id} key={index}>
                   {`${price.name} (${price.price} RON) `}
                 </MenuItem>
               ))}
@@ -172,7 +203,12 @@ const Appointment = ({ name, prices }) => {
               </Typography>
             </Grid>
             <Grid item>
-              <Button variant="contained" size="large" sx={{ borderRadius: "0px" }}>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{ borderRadius: "0px" }}
+                onClick={confirmHandler}
+              >
                 CONFIRM
               </Button>
             </Grid>
