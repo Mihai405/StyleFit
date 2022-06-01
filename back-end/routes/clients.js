@@ -1,4 +1,5 @@
 const express = require("express");
+const uniqueEmail = require("../middleware/uniqueEmail");
 const uploadImage = require("../middleware/uploadImage");
 const router = express.Router();
 const Client = require("../models/client");
@@ -12,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", uploadImage.single("image"), async (req, res) => {
+router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
   const client = new Client(req.body);
   try {
     if (req.file) {
