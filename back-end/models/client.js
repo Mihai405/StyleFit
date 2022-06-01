@@ -37,7 +37,7 @@ const clientSchema = new mongoose.Schema({
 clientSchema.methods.generateAuthToken = async function () {
   const client = this;
   const token = jwt.sign(
-    { _id: client._id.toString() },
+    { _id: client._id.toString(), role: "client" },
     process.env.JWT_SECRET
   );
 
@@ -54,6 +54,19 @@ clientSchema.methods.toJSON = function () {
   delete clientObject.tokens;
   delete clientObject.image;
   return clientObject;
+};
+
+clientSchema.statics.findByCredentials = async (email, password) => {
+  const client = await Client.findOne({ email });
+  if (!client) {
+    throw new Error("Invalid credentials");
+  }
+
+  const isMatch = await bcrypt.compare(password, client.password);
+  if (!isMatch) {
+    throw new Error("Invalid credentials");
+  }
+  return client;
 };
 
 clientSchema.pre("save", async function (next) {

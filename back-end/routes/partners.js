@@ -27,6 +27,19 @@ router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
   }
 });
 
+router.patch("/login", async (req, res) => {
+  try {
+    const partner = await Partner.findByCredentials(
+      req.body.email,
+      req.body.password
+    );
+    const token = await partner.generateAuthToken();
+    res.json({ partner, token });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.get("/:id/image", async (req, res) => {
   try {
     const partner = await Partner.findById(req.params.id);

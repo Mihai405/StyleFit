@@ -43,7 +43,7 @@ const partnerSchema = new mongoose.Schema({
 partnerSchema.methods.generateAuthToken = async function () {
   const partner = this;
   const token = jwt.sign(
-    { _id: partner._id.toString() },
+    { _id: partner._id.toString(), role: "partner" },
     process.env.JWT_SECRET
   );
 
@@ -60,6 +60,19 @@ partnerSchema.methods.toJSON = function () {
   delete partnerObject.tokens;
   delete partnerObject.image;
   return partnerObject;
+};
+
+partnerSchema.statics.findByCredentials = async (email, password) => {
+  const partner = await Partner.findOne({ email });
+  if (!partner) {
+    throw new Error("Invalid credentials");
+  }
+
+  const isMatch = await bcrypt.compare(password, partner.password);
+  if (!isMatch) {
+    throw new Error("Invalid credentials");
+  }
+  return partner;
 };
 
 partnerSchema.pre("save", async function (next) {

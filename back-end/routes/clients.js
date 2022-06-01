@@ -3,6 +3,7 @@ const uniqueEmail = require("../middleware/uniqueEmail");
 const uploadImage = require("../middleware/uploadImage");
 const router = express.Router();
 const Client = require("../models/client");
+const Partner = require("../models/partner");
 
 router.get("/", async (req, res) => {
   try {
@@ -22,6 +23,19 @@ router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
     await client.save();
     const token = await client.generateAuthToken();
     res.status(201).json({ client, token });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.patch("/login", async (req, res) => {
+  try {
+    const client = await Client.findByCredentials(
+      req.body.email,
+      req.body.password
+    );
+    const token = await client.generateAuthToken();
+    res.json({ client, token });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
