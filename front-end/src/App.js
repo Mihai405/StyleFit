@@ -13,9 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
-
-          <Route path="/partner" element={<PartnerPage />} />
-          <Route path="/partners" element={<Partners />} />
+          <Route path="/partners/:category/*" element={<Partners />} />
+          <Route path="partners/:category/:id" element={<PartnerPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/appointments" element={<Appointments />} />
         </Routes>

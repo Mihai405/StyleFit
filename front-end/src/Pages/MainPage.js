@@ -1,4 +1,5 @@
 import { Grid, Box, Typography, Container } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import HairStylistWallpaper from "../assets/MainPage/HairStylist.png";
 import MakeupWallpaper from "../assets/MainPage/Makeup.png";
@@ -6,12 +7,11 @@ import CategoryCard from "../components/MainPage/CategoryCard";
 
 let dummy_data = [
   { id: 1, name: "HairStylist" },
-  { id: 2, name: "HairStylist2" },
-  { id: 3, name: "HairStylist3" },
-  { id: 4, name: "HairStylist4" },
-  { id: 5, name: "HairStylist5" },
-  { id: 6, name: "HairStylist6" },
-  { id: 7, name: "HairStylist7" },
+  { id: 2, name: "Nails" },
+  { id: 3, name: "Spa" },
+  { id: 4, name: "Skin" },
+  { id: 5, name: "Waxing" },
+  { id: 6, name: "Massage" },
 ];
 
 const MainPage = () => {
@@ -137,7 +137,9 @@ const MainPage = () => {
         <Grid container item xs={12} spacing={3} paddingY={3} justifyContent="center">
           {dummy_data.map((element, index) => (
             <Grid item key={index}>
-              <CategoryCard {...element} />
+              <Link to={`partners/${element.name}`} style={{ textDecoration: "none" }}>
+                <CategoryCard {...element} />
+              </Link>
             </Grid>
           ))}
         </Grid>

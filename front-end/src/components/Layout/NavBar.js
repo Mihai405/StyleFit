@@ -16,8 +16,9 @@ import { NavLink, Link } from "react-router-dom";
 import { useTheme } from "@mui/system";
 import LogIn from "../../Pages/LogIn";
 import Register from "../../Pages/Register";
+import { StyledButton } from "./../../styles/Styles";
 
-const pages = ["Home", "Services", "Contact", "Partners", "Partner"];
+const pages = ["Home", "Services", "Partner"];
 
 const NavBar = () => {
   const theme = useTheme();
@@ -31,6 +32,8 @@ const NavBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const isLoggedIn = true;
 
   return (
     <AppBar
@@ -77,6 +80,20 @@ const NavBar = () => {
                   </Typography>
                 </MenuItem>
               ))}
+              <MenuItem key="Appointments" onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <NavLink
+                    to="/appointments"
+                    style={{
+                      textDecoration: "none",
+                      color: theme.palette.secondary.main,
+                      display: "block",
+                    }}
+                  >
+                    My Appointments
+                  </NavLink>
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Avatar
@@ -121,10 +138,50 @@ const NavBar = () => {
                 </NavLink>
               </Button>
             ))}
+            <Button
+              key="Partners"
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, display: "block" }}
+            >
+              <NavLink
+                to="/partners/All"
+                style={{
+                  textDecoration: "none",
+                  color: theme.palette.secondary.main,
+                }}
+              >
+                Partners
+              </NavLink>
+            </Button>
+            <Button
+              key="Appointments"
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, display: "block" }}
+            >
+              <NavLink
+                to="/appointments"
+                style={{
+                  textDecoration: "none",
+                  color: theme.palette.secondary.main,
+                }}
+              >
+                My Appointments
+              </NavLink>
+            </Button>
           </Box>
           <Box justifyContent={"flex-end"} sx={{ display: { xs: "none", md: "flex" } }}>
-            <LogIn />
-            <Register />
+            {!isLoggedIn && <LogIn />}
+            {!isLoggedIn && <Register />}
+            {isLoggedIn && (
+              <StyledButton
+                variant="contained"
+                sx={{
+                  boxShadow: "25",
+                }}
+              >
+                Logout
+              </StyledButton>
+            )}
           </Box>
         </Toolbar>
       </Container>
