@@ -33,7 +33,7 @@ const NavBar = () => {
     setAnchorElNav(null);
   };
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <AppBar
