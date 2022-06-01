@@ -1,8 +1,28 @@
+require("dotenv").config();
 const express = require("express");
+require("./db/mongoose");
+const auth = require("./middleware/auth");
 const app = express();
+const cors = require("cors");
+const port = process.env.PORT;
 
-app.get("/server", async (req, res) => {
-  res.send("<h1>Starting Server</h1>");
+app.use(cors());
+app.use(express.json());
+
+const clientsRouter = require("./routes/clients");
+app.use("/clients", clientsRouter);
+
+const partnersRouter = require("./routes/partners");
+app.use("/partners", partnersRouter);
+
+const serviceRouter = require("./routes/services");
+app.use("/services", serviceRouter);
+
+const appointmentRouter = require("./routes/appointments");
+app.use("/appointments", appointmentRouter);
+
+app.get("/me", auth, async (req, res) => {
+  res.json(res.user);
 });
 
-app.listen(4000, () => console.log("Server Started"));
+app.listen(port, () => console.log("Server started on port " + port));
