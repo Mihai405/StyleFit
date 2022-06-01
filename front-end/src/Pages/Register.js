@@ -7,7 +7,6 @@ import { StyledButton, theme } from "../styles/Styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
-import Link from "@mui/material/Link";
 import { Divider } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";

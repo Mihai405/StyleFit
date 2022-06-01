@@ -14,12 +14,11 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { NavLink, Link } from "react-router-dom";
 import { useTheme } from "@mui/system";
-import LogIn from "../../Pages/LogIn";
-import Register from "../../Pages/Register";
+import { StyledButton } from "./../../styles/Styles";
 
-const pages = ["Home", "Services", "Contact", "Partners", "Partner"];
+const pages = ["Home", "Profile", "Appointments"];
 
-const NavBar = () => {
+const NavBarPartner = () => {
   const theme = useTheme();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -123,12 +122,18 @@ const NavBar = () => {
             ))}
           </Box>
           <Box justifyContent={"flex-end"} sx={{ display: { xs: "none", md: "flex" } }}>
-            <LogIn />
-            <Register />
+            <StyledButton
+              variant="contained"
+              sx={{
+                boxShadow: "25",
+              }}
+            >
+              Logout
+            </StyledButton>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default NavBar;
+export default NavBarPartner;
