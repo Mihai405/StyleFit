@@ -43,6 +43,7 @@ router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
 
 router.post("/services", auth, async (req, res) => {
   try {
+    console.log(res.role);
     if (res.role !== "partner") {
       throw new Error("Invalid role");
     }

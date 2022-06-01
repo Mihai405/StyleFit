@@ -36,7 +36,6 @@ const partnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
 });
 
 partnerSchema.methods.generateAuthToken = async function () {

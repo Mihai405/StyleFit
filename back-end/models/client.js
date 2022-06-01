@@ -31,7 +31,6 @@ const clientSchema = new mongoose.Schema({
       token: { type: String, required: true },
     },
   ],
-  appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
 });
 
 clientSchema.methods.generateAuthToken = async function () {

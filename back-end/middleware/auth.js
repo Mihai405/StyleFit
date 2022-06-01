@@ -17,6 +17,7 @@ const auth = async (req, res, next) => {
       });
       if (client) {
         res.token = token;
+        res.role = decoded.role;
         res.user = client;
       }
     }
