@@ -1,13 +1,12 @@
 import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
-import PartnerWallpaperCard from "../../assets/Partners/PartnerWallpaperCard.jpg";
 import StarIcon from "@mui/icons-material/Star";
 
-const PartnerCard = ({ name, job, rating, reviews }) => {
+const PartnerCard = ({ name, job, rating, reviews, _id }) => {
   return (
     <Card sx={{ maxWidth: 200, border: 1, padding: 2 }}>
       <CardMedia
         component="img"
-        image={PartnerWallpaperCard}
+        image={`http://127.0.0.1:4000/partners/${_id}/image`}
         alt="green iguana"
         sx={{
           border: "1px solid black",

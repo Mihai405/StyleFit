@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   Grid,
   Container,
@@ -16,7 +16,6 @@ import PartnerCard from "../components/Partners/PartnerCard";
 import { useNavigate, useParams } from "react-router";
 import { Link, Routes, Route } from "react-router-dom";
 import PartnerPage from "./PartnerPage";
-import AuthContext from "./../store/auth-context";
 
 const dummy_categories = [
   "All",
@@ -29,14 +28,9 @@ const dummy_categories = [
 ];
 
 const Partners = () => {
-  const rating = 4.7;
-  const reviews = 124;
-
   const [partners, setPartners] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const authCtx = useContext(AuthContext);
 
   const fetchPartnersHandler = useCallback(async () => {
     setIsLoading(true);
@@ -56,6 +50,8 @@ const Partners = () => {
           _id: data[key]._id,
           name: data[key].name,
           job: data[key].job,
+          rating: 4.7,
+          reviews: 124,
         });
       }
 
@@ -115,12 +111,6 @@ const Partners = () => {
     navigate(`/partners/${event.target.value}`, { replace: true });
   };
 
-  console.log(
-    partners.filter(
-      (element) => (element.job === filter && filter !== "") || filter === "All"
-    ).length
-  );
-
   return (
     <Container>
       <Box sx={{ minWidth: 120 }} marginTop={4}>
@@ -156,14 +146,18 @@ const Partners = () => {
             )
             .map((element, index) => (
               <Grid item key={index}>
-                <Link to={`${element.id}`} style={{ textDecoration: "none" }}>
-                  <PartnerCard {...element} rating={rating} reviews={reviews} />
+                <Link to={`${element._id}`} style={{ textDecoration: "none" }}>
+                  <PartnerCard
+                    {...element}
+                    rating={element.rating}
+                    reviews={element.reviews}
+                  />
                 </Link>
                 <Routes>
                   <Route
                     exact
-                    path={`${element.id}`}
-                    element={<PartnerPage {...element} />}
+                    path={`${element._id}`}
+                    element={<PartnerPage _id={element._id} />}
                   ></Route>
                 </Routes>
               </Grid>

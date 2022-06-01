@@ -111,7 +111,7 @@ const Appointment = ({ name, prices }) => {
               }}
               onChange={handleChange}
             >
-              {prices.map((price, index) => (
+              {prices?.map((price, index) => (
                 <MenuItem value={price.name} key={index}>
                   {`${price.name} (${price.price} RON) `}
                 </MenuItem>

@@ -16,6 +16,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const partner = await Partner.findById(req.params.id);
+    const services = await Service.find({ partner: req.params.id });
+    res.json({ partner: partner, services: services });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
   const partner = new Partner(req.body);
   try {
@@ -75,10 +85,7 @@ router.get("/appointments", auth, async (req, res) => {
 
 router.patch("/login", async (req, res) => {
   try {
-    const partner = await Partner.findByCredentials(
-      req.body.email,
-      req.body.password
-    );
+    const partner = await Partner.findByCredentials(req.body.email, req.body.password);
     const token = await partner.generateAuthToken();
     res.json({ partner, token });
   } catch (err) {
@@ -88,9 +95,7 @@ router.patch("/login", async (req, res) => {
 
 router.patch("/logout", auth, async (req, res) => {
   try {
-    res.user.tokens = res.user.tokens.filter(
-      (token) => token.token !== res.token
-    );
+    res.user.tokens = res.user.tokens.filter((token) => token.token !== res.token);
     await res.user.save();
     res.json({ message: "Log Out" });
   } catch (err) {
