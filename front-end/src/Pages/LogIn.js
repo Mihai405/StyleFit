@@ -16,6 +16,7 @@ import { WavyHeader } from "../components/LogIn/wavyStyles/WavyHeader";
 import { WavyFooter } from "../components/LogIn/wavyStyles/WavyFooter";
 import { useState, useRef, useContext } from "react";
 import AuthContext from "./../store/auth-context";
+import { useNavigate } from "react-router";
 
 const CustomInputField = styled(TextField)({
   backgroundColor: theme.palette.primary.main,
@@ -31,6 +32,8 @@ const CustomInputField = styled(TextField)({
 });
 
 export default function LogIn() {
+  const navigate = useNavigate();
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -92,6 +95,7 @@ export default function LogIn() {
           authCtx.login(data.token, role, data.partner.name);
         }
         handleClose();
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         alert(err.message);
@@ -130,6 +134,7 @@ export default function LogIn() {
                 <CustomInputField
                   sx={{ px: 2 }}
                   placeholder="Password"
+                  type="password"
                   inputRef={passwordInputRef}
                 ></CustomInputField>
               </Grid>

@@ -22,6 +22,8 @@ import { WavyHeader } from "../components/LogIn/wavyStyles/WavyHeader";
 import { WavyFooter } from "../components/LogIn/wavyStyles/WavyFooter";
 import AuthContext from "./../store/auth-context";
 
+import { useNavigate } from "react-router";
+
 const CustomInputField = styled(TextField)({
   backgroundColor: theme.palette.primary.main,
   borderRadius: "100px",
@@ -44,6 +46,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Register() {
+  const navigate = useNavigate();
   const nameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -122,6 +125,7 @@ export default function Register() {
           authCtx.login(data.token, role, data.partner.name);
         }
         handleClose();
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         alert(err.message);
@@ -175,6 +179,7 @@ export default function Register() {
                 <CustomInputField
                   sx={{ px: 2 }}
                   placeholder="Password"
+                  type="password"
                   inputRef={passwordInputRef}
                 ></CustomInputField>
               </Grid>
