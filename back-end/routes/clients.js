@@ -2,6 +2,7 @@ const express = require("express");
 const auth = require("../middleware/auth");
 const uniqueEmail = require("../middleware/uniqueEmail");
 const uploadImage = require("../middleware/uploadImage");
+const Appointment = require("../models/appointment");
 const router = express.Router();
 const Client = require("../models/client");
 
@@ -23,6 +24,21 @@ router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
     await client.save();
     const token = await client.generateAuthToken();
     res.status(201).json({ client, token });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/appointments", auth, async (req, res) => {
+  try {
+    if (res.role !== "client") {
+      throw new Error("Invalid role");
+    }
+    const appointments = await Appointment.find({ client: res.user._id })
+      .populate("client", "name email")
+      .populate("partner", "name email")
+      .populate("service", "name price");
+    res.json(appointments);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

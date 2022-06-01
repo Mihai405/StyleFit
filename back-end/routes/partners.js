@@ -2,6 +2,7 @@ const express = require("express");
 const auth = require("../middleware/auth");
 const uniqueEmail = require("../middleware/uniqueEmail");
 const uploadImage = require("../middleware/uploadImage");
+const Appointment = require("../models/appointment");
 const router = express.Router();
 const Partner = require("../models/partner");
 const Service = require("../models/service");
@@ -10,18 +11,6 @@ router.get("/", async (req, res) => {
   try {
     const partners = await Partner.find();
     res.json(partners);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-router.get("/services", auth, async (req, res) => {
-  try {
-    if (res.role !== "partner") {
-      throw new Error("Invalid role");
-    }
-    const services = await Service.find({ partner: res.user._id });
-    res.json(services);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -41,9 +30,20 @@ router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
   }
 });
 
+router.get("/services", auth, async (req, res) => {
+  try {
+    if (res.role !== "partner") {
+      throw new Error("Invalid role");
+    }
+    const services = await Service.find({ partner: res.user._id });
+    res.json(services);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.post("/services", auth, async (req, res) => {
   try {
-    console.log(res.role);
     if (res.role !== "partner") {
       throw new Error("Invalid role");
     }
@@ -53,6 +53,21 @@ router.post("/services", auth, async (req, res) => {
     });
     await service.save();
     res.status(201).json(service);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/appointments", auth, async (req, res) => {
+  try {
+    if (res.role !== "partner") {
+      throw new Error("Invalid role");
+    }
+    const appointments = await Appointment.find({ partner: res.user._id })
+      .populate("client", "name email")
+      .populate("partner", "name email")
+      .populate("service", "name price");
+    res.json(appointments);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

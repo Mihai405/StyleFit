@@ -18,6 +18,9 @@ app.use("/partners", partnersRouter);
 const serviceRouter = require("./routes/services");
 app.use("/services", serviceRouter);
 
+const appointmentRouter = require("./routes/appointments");
+app.use("/appointments", appointmentRouter);
+
 app.get("/me", auth, async (req, res) => {
   res.json(res.user);
 });
