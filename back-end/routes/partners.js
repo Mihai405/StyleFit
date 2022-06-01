@@ -4,11 +4,24 @@ const uniqueEmail = require("../middleware/uniqueEmail");
 const uploadImage = require("../middleware/uploadImage");
 const router = express.Router();
 const Partner = require("../models/partner");
+const Service = require("../models/service");
 
 router.get("/", async (req, res) => {
   try {
     const partners = await Partner.find();
     res.json(partners);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/services", auth, async (req, res) => {
+  try {
+    if (res.role !== "partner") {
+      throw new Error("Invalid role");
+    }
+    await res.user.populate("services");
+    res.json(res.user);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -23,6 +36,23 @@ router.post("/", uploadImage.single("image"), uniqueEmail, async (req, res) => {
     await partner.save();
     const token = await partner.generateAuthToken();
     res.status(201).json({ partner, token });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.post("/services", auth, async (req, res) => {
+  try {
+    if (res.role !== "partner") {
+      throw new Error("Invalid role");
+    }
+    const service = await new Service({
+      ...req.body,
+    });
+    await service.save();
+    res.user.services.push(service);
+    await res.user.save();
+    res.status(201).json(res.user);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

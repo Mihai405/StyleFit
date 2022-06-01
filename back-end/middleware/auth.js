@@ -28,6 +28,7 @@ const auth = async (req, res, next) => {
       });
       if (partner) {
         res.token = token;
+        res.role = decoded.role;
         res.user = partner;
       }
     }

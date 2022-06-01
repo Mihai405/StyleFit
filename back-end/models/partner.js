@@ -37,7 +37,7 @@ const partnerSchema = new mongoose.Schema({
     required: true,
   },
   appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
-  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "Services" }],
+  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "Service" }],
 });
 
 partnerSchema.methods.generateAuthToken = async function () {
