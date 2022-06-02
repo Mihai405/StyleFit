@@ -1,12 +1,11 @@
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
-import HairStylistCard from "../../assets/MainPage/Cards/HairStylistCard.png";
 
-const CategoryCard = ({ name }) => {
+const CategoryCard = ({ name, image }) => {
   return (
     <Card sx={{ maxWidth: 200, border: 1, padding: 2 }}>
       <CardMedia
         component="img"
-        image={HairStylistCard}
+        image={image}
         alt="green iguana"
         sx={{
           border: "1px solid black",

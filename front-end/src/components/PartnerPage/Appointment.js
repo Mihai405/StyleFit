@@ -122,8 +122,7 @@ const Appointment = ({ name, prices }) => {
           height="482px"
           display="flex"
           flexDirection="column"
-          // justifyContent="center"
-          alignContent="space-around"
+          justifyContent="space-evenly"
         >
           <FormControl fullWidth>
             <InputLabel

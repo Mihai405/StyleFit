@@ -4,14 +4,24 @@ import { Link } from "react-router-dom";
 import HairStylistWallpaper from "../assets/MainPage/HairStylist.png";
 import MakeupWallpaper from "../assets/MainPage/Makeup.png";
 import CategoryCard from "../components/MainPage/CategoryCard";
+import HairStylistCard from "./../assets/MainPage/Cards/HairStylistCard.png";
+import NailsCard from "./../assets/MainPage/Cards/NailsCard.png";
+import SpaCard from "./../assets/MainPage/Cards/SpaCard.png";
+import SkinCard from "./../assets/MainPage/Cards/SkinCard.png";
+import WaxingCard from "./../assets/MainPage/Cards/WaxingCard.png";
+import MassageCard from "./../assets/MainPage/Cards/MassageCard.png";
 
 let dummy_data = [
-  { id: 1, name: "HairStylist" },
-  { id: 2, name: "Nails" },
-  { id: 3, name: "Spa" },
-  { id: 4, name: "Skin" },
-  { id: 5, name: "Waxing" },
-  { id: 6, name: "Massage" },
+  {
+    id: 1,
+    name: "HairStylist",
+    image: HairStylistCard,
+  },
+  { id: 2, name: "Nails", image: NailsCard },
+  { id: 3, name: "Spa", image: SpaCard },
+  { id: 4, name: "Skin", image: SkinCard },
+  { id: 5, name: "Waxing", image: WaxingCard },
+  { id: 6, name: "Massage", image: MassageCard },
 ];
 
 const MainPage = () => {
