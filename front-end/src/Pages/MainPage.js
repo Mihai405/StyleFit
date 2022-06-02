@@ -51,7 +51,7 @@ const MainPage = () => {
               letterSpacing: ".2rem",
             }}
           >
-            Don’t Miss Our Exclusive Special Offer
+            Your destination for beauty
           </Typography>
           <Typography
             variant="h6"
@@ -62,8 +62,7 @@ const MainPage = () => {
               letterSpacing: ".2rem",
             }}
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's
+            Discover for free the best salons and choose the right stylist for you.
           </Typography>
           <Grid container item spacing={3} paddingTop={3} textAlign="center">
             <Grid item md={4}>
@@ -84,7 +83,7 @@ const MainPage = () => {
                   paddingTop: 1,
                 }}
               >
-                Lorem Ipsum is simply dummy text of the p
+                Partners
               </Typography>
             </Grid>
             <Grid item md={4}>
@@ -106,7 +105,7 @@ const MainPage = () => {
                   paddingTop: 1,
                 }}
               >
-                Lorem Ipsum is simply dummy text of the p
+                Clients
               </Typography>
             </Grid>
             <Grid item md={4}>
@@ -127,7 +126,7 @@ const MainPage = () => {
                   paddingTop: 1,
                 }}
               >
-                Lorem Ipsum is simply dummy text of the p
+                Appointments
               </Typography>
             </Grid>
           </Grid>
